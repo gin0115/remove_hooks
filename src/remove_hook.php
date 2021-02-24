@@ -14,15 +14,15 @@ function remove_hook( string $hook_handle, callable $callback, int $priority = 1
 		return false;
 	}
 
-	// Extract class and method, based on callback type.
-	$callback_class    = is_array( $callback ) ? get_class( $callback[0] ) : false;
-	$callback_function = is_array( $callback ) ? $callback[1] : $callback;
-	$removed_hooks     = false;
-
 	// Bail if lamda passed.
 	if ( $callback instanceof Closure ) {
 		return false;
 	}
+
+	// Extract class and method, based on callback type.
+	$callback_class    = is_array( $callback ) ? get_class( $callback[0] ) : false;
+	$callback_function = is_array( $callback ) ? $callback[1] : $callback;
+	$removed_hooks     = false;
 
 	// Loop through all registered hooks.
 	foreach ( $wp_filter[ $hook_handle ]->callbacks[ $priority ] as $key => $registered_callbacks ) {
