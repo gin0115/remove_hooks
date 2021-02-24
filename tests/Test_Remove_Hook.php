@@ -37,7 +37,6 @@ class Test_Remove_Hook extends WP_UnitTestCase {
 		// Check we removed the hook.
 		$this->assertTrue( $result );
 		$this->assertEmpty( $GLOBALS['wp_filter'][ Class_Instance::ACTION_HANDLE ]->callbacks[10] );
-
 	}
 
 	public function test_can_remove_action_using_static() {
@@ -47,15 +46,14 @@ class Test_Remove_Hook extends WP_UnitTestCase {
 		// Check the hook was removed.
 		$this->assertTrue( $result );
 		$this->assertEmpty( $GLOBALS['wp_filter'][ Class_Static::ACTION_HANDLE ]->callbacks[10] );
-
 	}
 
-	public function test_can_remove_action_using_global_functions(Type $var = null)
-	{
+	public function test_can_remove_action_using_global_functions() {
 		$result = remove_hook( ACTION_HANDLE, 'action_callback_function' );
+
+		// Check we removed the hook.
 		$this->assertTrue( $result );
 		$this->assertEmpty( $GLOBALS['wp_filter'][ ACTION_HANDLE ]->callbacks[10] );
-
 	}
 
 	public function test_can_remove_filter_using_instance() {
@@ -65,7 +63,6 @@ class Test_Remove_Hook extends WP_UnitTestCase {
 		// Check we removed the hook.
 		$this->assertTrue( $result );
 		$this->assertEmpty( $GLOBALS['wp_filter'][ Class_Instance::FILTER_HANDLE ]->callbacks[10] );
-
 	}
 
 	public function test_can_remove_filter_using_static() {
@@ -78,12 +75,11 @@ class Test_Remove_Hook extends WP_UnitTestCase {
 
 	}
 
-	public function test_can_remove_filter_using_global_functions(Type $var = null)
-	{
+	public function test_can_remove_filter_using_global_functions() {
 		$result = remove_hook( FILTER_HANDLE, 'filter_callback_function' );
+
+		// Check we removed the hook.
 		$this->assertTrue( $result );
 		$this->assertEmpty( $GLOBALS['wp_filter'][ FILTER_HANDLE ]->callbacks[10] );
-
 	}
-
 }
